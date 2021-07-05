@@ -5,7 +5,7 @@ metadata:
   labels:
     app: falcon-app
 spec:
-  replicas: 1
+  # replicas: 1
   selector:
     matchLabels:
       app: falcon-app
@@ -27,6 +27,16 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        readinessProbe:
+          tcpSocket:
+            port: 8000
+          initialDelaySeconds: 50
+          periodSeconds: 20
+        livenessProbe:
+          tcpSocket:
+            port: 8000
+          initialDelaySeconds: 50
+          periodSeconds: 20
 
 ---          
 apiVersion: v1
