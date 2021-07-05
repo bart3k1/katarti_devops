@@ -31,5 +31,5 @@ variable "machine_type" {
 }
 
 variable "app_name" {
-  default = "falcon-app"
+  default = "falcon-app-cluster"
 }
