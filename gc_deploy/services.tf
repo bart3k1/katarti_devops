@@ -1,6 +1,8 @@
 resource "kubernetes_service" "app" {
   metadata {
     name = var.app
+    namespace = kubernetes_namespace.bw-namespace.metadata.0.name
+    
   }
   spec {
     selector = {
@@ -21,6 +23,7 @@ resource "kubernetes_service" "app" {
 #   wait_for_load_balancer = true
 #   metadata {
 #     name = "ingress"
+#     namespace = kubernetes_namespace.bw-namespace.metadata.0.name
 #     annotations = {
 #       "kubernetes.io/ingress.class" = "nginx"
 #     }

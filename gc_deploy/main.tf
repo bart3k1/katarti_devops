@@ -13,3 +13,9 @@ terraform {
     }
   }
 }
+
+resource "kubernetes_namespace" "bw-namespace" {
+  metadata {
+    name = "bw-namespace"
+  }
+}
