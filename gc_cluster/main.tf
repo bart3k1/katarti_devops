@@ -17,8 +17,8 @@ resource "google_container_cluster" "primary" {
   subnetwork = google_compute_subnetwork.subnet.name
 
   master_auth {
-    username = ""
-    password = ""
+    # username = ""
+    # password = ""
 
     client_certificate_config {
       issue_client_certificate = false
