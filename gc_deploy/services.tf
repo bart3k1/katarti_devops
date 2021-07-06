@@ -8,33 +8,33 @@ resource "kubernetes_service" "app" {
     }
     port {
       
-      port        = 80
+      port        = 8000
       target_port = 8000
     }
 
-    type = "LoadBalancer"
+    # type = "LoadBalancer"
   }
 } 
 
-# resource "kubernetes_ingress" "ingress" {
-#   wait_for_load_balancer = true
-#   metadata {
-#     name = "ingress"
-#     annotations = {
-#       "kubernetes.io/ingress.class" = "nginx"
-#     }
-#   }
-#   spec {
-#     rule {
-#       http {
-#         path {
-#           path = "/*"
-#           backend {
-#             service_name = kubernetes_service.app.metadata.0.name
-#             service_port = 8000
-#           }
-#         }
-#       }
-#     }
-#   }
-# }
+resource "kubernetes_ingress" "ingress" {
+  wait_for_load_balancer = true
+  metadata {
+    name = "ingress"
+    annotations = {
+      "kubernetes.io/ingress.class" = "nginx"
+    }
+  }
+  spec {
+    rule {
+      http {
+        path {
+          path = "/*"
+          backend {
+            service_name = kubernetes_service.app.metadata.0.name
+            service_port = 8000
+          }
+        }
+      }
+    }
+  }
+}
