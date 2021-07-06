@@ -12,7 +12,7 @@ resource "kubernetes_service" "app" {
       target_port = 8000
     }
 
-    # type = "LoadBalancer"
+    type = "NodePort"
   }
 } 
 
